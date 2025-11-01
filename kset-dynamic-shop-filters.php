@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: KSET Dynamic Shop Filters
- * Plugin URI: https://github.com/yourusername/kset-dynamic-shop-filters
+ * Plugin URI: https://github.com/juanjcgo/KSET-Dynamic-Shop-Filters.git
  * Description: A dynamic filtering system for WooCommerce shops with real-time AJAX filtering by categories, attributes, price range, and more. Features a modern React-based frontend interface with smooth animations and responsive design.
  * Version: 1.0.0
  * Author: Juan Carlos Garcia
