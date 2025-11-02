@@ -71,9 +71,54 @@ class KSET_Dynamic_Shop_Filters_Init {
      * Initialize plugin components.
      */
     private function init_components() {
+        // Load assets management
+        $this->load_assets();
+        
+        // Load shortcodes
+        $this->load_shortcodes();
+        
+        // Load REST API routes
+        $this->load_rest_routes();
+        
         // Here we can load controllers, models, etc.
         // For now, just a placeholder
         do_action( 'kset_dsf_init_components' );
+    }
+
+    /**
+     * Load assets management class.
+     */
+    private function load_assets() {
+        $assets_file = KSET_DSF_PLUGIN_PATH . 'includes/class-assets.php';
+        if ( file_exists( $assets_file ) ) {
+            require_once $assets_file;
+            if ( class_exists( 'KSET_Dynamic_Shop_Filters_Assets' ) ) {
+                new KSET_Dynamic_Shop_Filters_Assets();
+            }
+        }
+    }
+
+    /**
+     * Load shortcodes class.
+     */
+    private function load_shortcodes() {
+        $shortcodes_file = KSET_DSF_PLUGIN_PATH . 'includes/class-shortcodes.php';
+        if ( file_exists( $shortcodes_file ) ) {
+            require_once $shortcodes_file;
+            if ( class_exists( 'KSET_Dynamic_Shop_Filters_Shortcodes' ) ) {
+                KSET_Dynamic_Shop_Filters_Shortcodes::get_instance();
+            }
+        }
+    }
+
+    /**
+     * Load REST API routes.
+     */
+    private function load_rest_routes() {
+        $rest_routes_file = KSET_DSF_PLUGIN_PATH . 'includes/routes/rest-filters.php';
+        if ( file_exists( $rest_routes_file ) ) {
+            require_once $rest_routes_file;
+        }
     }
 
     /**

@@ -15,6 +15,7 @@
  * Requires PHP: 7.4
  * WC requires at least: 5.0
  * WC tested up to: 9.3
+ * Woo: 9363590:123456789abcdef
  * Network: false
  * 
  * @package KSET_Dynamic_Shop_Filters
@@ -23,28 +24,11 @@
  * @version 1.0.0
  */
 
-/*
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-Copyright 2025 Your Name
-*/
-
 // Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
 
 // Define plugin constants
 define( 'KSET_DSF_VERSION', '1.0.0' );
@@ -72,6 +56,16 @@ function kset_dsf_woocommerce_missing_notice() {
     $message = __( 'KSET Dynamic Shop Filters requires WooCommerce to be installed and active.', 'kset-dynamic-shop-filters' );
     printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
+
+/**
+ * Declare WooCommerce HPOS compatibility
+ */
+function kset_dsf_declare_hpos_compatibility() {
+    if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    }
+}
+add_action( 'before_woocommerce_init', 'kset_dsf_declare_hpos_compatibility' );
 
 /**
  * Initialize the plugin
@@ -133,3 +127,15 @@ function kset_dsf_uninstall() {
     // This will be implemented in the database schema class
 }
 register_uninstall_hook( __FILE__, 'kset_dsf_uninstall' );
+
+
+
+
+
+
+
+
+
+
+
+

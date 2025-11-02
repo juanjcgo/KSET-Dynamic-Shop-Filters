@@ -10,6 +10,11 @@ module.exports = {
         path: path.resolve(__dirname, 'assets/js/dist'),
         filename: '[name]/bundle.js'
     },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        'react-dom/client': 'ReactDOM'
+    },
     module: {
         rules: [
             {
